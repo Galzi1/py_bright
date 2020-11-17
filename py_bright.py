@@ -5,9 +5,11 @@ import os
 
 
 def read_file_content(file):
-    with open(file, "r") as myfile:
-        content = myfile.readlines()
-    return content
+    if os.path.isfile(file):
+        with open(file, "r") as file_stream:
+            content = file_stream.readlines()
+        return content
+    return ""
 
 
 # args:
@@ -15,11 +17,16 @@ def read_file_content(file):
 # [1] = Name of file to test
 # [2] = Name of tests file
 def main(args):
-    if len(args) == 3:
-        module = importlib.import_module(os.path.splitext(args[2])[0])
+    if len(args) >= 3:
+        try:
+            module = importlib.import_module(os.path.splitext(args[2])[0])
+        except Exception:
+            print("Exception:", sys.exc_info()[1])
+    if len(args) >= 2:
         file_lines = read_file_content(args[1])
-        test = module.Tests(args[1], file_lines, "foo")
-        test.run_tests()
+        # test = module.Tests(args[1], file_lines, "foo")
+        test = module.Tests(args[1], file_lines)
+    test.run_tests()
 
 
 if __name__ == '__main__':
