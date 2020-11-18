@@ -1,3 +1,5 @@
-N = int(input())
+# What's up? It's from the pizza
+i = input()
+N = int(i)
 
-print(N + 1)
+print(str(N + 1))

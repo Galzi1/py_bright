@@ -24,8 +24,8 @@ def main(args):
             print("Exception:", sys.exc_info()[1])
     if len(args) >= 2:
         file_lines = read_file_content(args[1])
-        # test = module.Tests(args[1], file_lines, "foo")
-        test = module.Tests(args[1], file_lines)
+        test = module.Tests(args[1], file_lines, "foo")
+        # test = module.Tests(args[1], file_lines)
     test.run_tests()
 
 

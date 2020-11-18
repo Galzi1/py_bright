@@ -1,2 +1,2 @@
-def foo():
-    return "abc"
+def foo(s):
+    return "abc" + s
